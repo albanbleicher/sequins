@@ -1,4 +1,5 @@
 import { IcosahedronGeometry, Mesh, MeshNormalMaterial, Object3D } from "three";
+import Pillow from "./Pillow";
 
 export default class World {
   constructor(params) {
@@ -8,19 +9,16 @@ export default class World {
     this.debug = params.debug;
     this.container = new Object3D();
     this.container.name = "World";
+    this.scene = params.scene;
+    this.envMap = params.envMap;
     this.init();
-    if (this.debug) {
-      this.setDebug();
-    }
   }
   init() {
-    const geo = new IcosahedronGeometry(10, 1);
-    const mat = new MeshNormalMaterial({ wireframe: true });
-    const mesh = new Mesh(geo, mat);
-    mesh.position.z = -105;
-    this.container.add(mesh);
-    this.time.addEventListener("tick", () => {
-      mesh.rotation.y += 0.01;
+    this.pillow = new Pillow({
+      debug: this.debug,
+      scene: this.scene,
+      envMap: this.envMap,
     });
+    this.container.add(this.pillow.container);
   }
 }

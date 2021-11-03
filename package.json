@@ -7,9 +7,12 @@
     "clean": "rm -rf dist/*.*"
   },
   "devDependencies": {
-    "parcel": "latest"
+    "parcel": "latest",
+    "sass": "^1.43.4"
   },
   "dependencies": {
+    "@parcel/resolver-glob": "^2.0.0",
+    "@parcel/transformer-raw": "^2.0.0",
     "@parcel/transformer-sass": "^2.0.0",
     "three": "^0.134.0",
     "tweakpane": "^3.0.5"

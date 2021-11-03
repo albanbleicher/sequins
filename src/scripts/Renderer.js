@@ -1,4 +1,4 @@
-import { WebGLRenderer } from "three";
+import { WebGLRenderer, sRGBEncoding, ReinhardToneMapping } from "three";
 
 export default class Renderer {
   constructor(params) {
@@ -13,12 +13,17 @@ export default class Renderer {
       canvas: this.canvas,
       precision: "highp",
       powerPreference: "high-performance",
+      antialias: true,
     });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.renderer.outputEncoding = sRGBEncoding;
+    this.renderer.toneMapping = ReinhardToneMapping;
+    this.renderer.toneMappingExposure = 3;
   }
   render() {
     this.renderer.render(this.scene, this.camera.camera);
+    this.camera.controls.update();
   }
   resize() {
     this.renderer.setPixelRatio(window.devicePixelRatio);
