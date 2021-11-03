@@ -1,0 +1,17 @@
+{
+  "name": "my-project",
+  "main": "src/scripts/main.js",
+  "scripts": {
+    "dev": "parcel src/index.html",
+    "build": "parcel build",
+    "clean": "rm -rf dist/*.*"
+  },
+  "devDependencies": {
+    "parcel": "latest"
+  },
+  "dependencies": {
+    "@parcel/transformer-sass": "^2.0.0",
+    "three": "^0.134.0",
+    "tweakpane": "^3.0.5"
+  }
+}
