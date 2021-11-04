@@ -1,10 +1,10 @@
 {
   "name": "my-project",
-  "main": "src/scripts/main.js",
+  "source":"src/index.html",
   "scripts": {
     "dev": "parcel src/index.html",
     "build": "parcel build",
-    "clean": "rm -rf dist/*.*"
+    "clean": "rm -rf dist && rm -rf .parcel-cache"
   },
   "devDependencies": {
     "parcel": "latest",
