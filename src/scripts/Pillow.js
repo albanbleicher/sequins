@@ -1,13 +1,9 @@
 import {
   DoubleSide,
-  InstancedMesh,
-  Matrix4,
   Mesh,
   MeshNormalMaterial,
-  MeshStandardMaterial,
   Object3D,
   PlaneBufferGeometry,
-  Vector3,
 } from "three";
 import Sequins from "./Sequins";
 
