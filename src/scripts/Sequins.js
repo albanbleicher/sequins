@@ -19,6 +19,7 @@ export default class Sequins {
     this.count = params.count;
     this.front = params.front;
     this.mouse = params.mouse;
+    this.time = params.time;
     this.sequins = [];
     this.container = new Object3D();
     this.container.name = "Sequins";
@@ -47,7 +48,14 @@ export default class Sequins {
         );
         mat.setPosition(pos);
         this.instance.setMatrixAt(total, mat);
-
+        const quat = new Quaternion();
+        this.sequins[total] = {
+          col: i,
+          position: pos,
+          currentRotation: quat,
+          targetRotation: quat.clone(),
+          fromMouse: 1000,
+        };
         total++;
       }
     }
@@ -55,25 +63,29 @@ export default class Sequins {
     this.container.add(this.instance);
     this.mouse.addEventListener("move", (e) => {
       for (let i = 0; i < this.count; i++) {
+        this.sequins[i].fromMouse = e.message.pos.distanceTo(
+          this.sequins[i].position
+        );
+        if (this.sequins[i].fromMouse < 1) {
+          this.sequins[i].targetRotation.setFromAxisAngle(
+            new Vector3(0, 1, 0),
+            e.message.direction ? Math.PI : 2 * Math.PI
+          );
+        }
+      }
+    });
+    this.time.addEventListener("tick", () => {
+      this.sequins.forEach((sequin, i) => {
         const mat = new Matrix4();
         this.instance.getMatrixAt(i, mat);
-        const pos = new Vector3();
-        const rot = new Quaternion();
-        const target = rot.clone();
-        pos.setFromMatrixPosition(mat);
-        rot.setFromRotationMatrix(mat);
-        target.setFromAxisAngle(
-          new Vector3(0, 1, 0),
-          1 * e.message.delta === 0 ? (e.message.delta = 1) : e.message.delta
-        );
-        rot.slerp(target, 0.1);
-        const fromMouse = e.message.pos.distanceTo(pos);
-        if (fromMouse < 1) {
-          mat.makeRotationFromQuaternion(rot);
-          mat.setPosition(pos);
-        }
+        const rot = sequin.currentRotation;
+        if (sequin.fromMouse < 1) rot.slerp(sequin.targetRotation, 0.1);
+        mat.makeRotationFromQuaternion(rot);
+        const pos = sequin.position.clone();
+        pos.z = Math.sin(this.time.current * 0.02 + sequin.col / 10);
+        mat.setPosition(pos);
         this.instance.setMatrixAt(i, mat);
-      }
+      });
       this.instance.instanceMatrix.needsUpdate = true;
     });
   }

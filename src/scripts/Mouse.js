@@ -8,6 +8,8 @@ export default class Mouse extends EventDispatcher {
     this.raycaster = new Raycaster();
     this.mouse = new Vector3();
     this.debug = params.debug;
+    this.direction = "";
+    this.oldX = 0;
     this.delta = 0;
     this.init();
   }
@@ -24,12 +26,17 @@ export default class Mouse extends EventDispatcher {
       vec.sub(this.camera.camera.position).normalize();
       let distance = -this.camera.camera.position.z / vec.z;
       pos.copy(this.camera.camera.position).add(vec.multiplyScalar(distance));
-      this.mouse.copy(pos);
+      this.delta = this.oldX - e.clientX;
+      let dir = 0;
+      if (this.delta > 0.5 || this.delta < -0.5) {
+        this.direction = this.oldX < e.clientX ? "droite" : "gauche";
+        dir = this.oldX < e.clientX;
+      }
       this.dispatchEvent({
         type: "move",
-        message: { pos, delta: this.delta - e.clientX },
+        message: { pos, direction: dir, delta: this.delta },
       });
-      this.delta = e.clientX;
+      this.oldX = e.clientX;
     });
     if (this.debug) {
       const folder = this.debug.addFolder({
@@ -38,6 +45,7 @@ export default class Mouse extends EventDispatcher {
       folder.addMonitor(this.mouse, "x");
       folder.addMonitor(this.mouse, "y");
       folder.addMonitor(this.mouse, "z");
+      folder.addMonitor(this, "direction");
     }
   }
 }

@@ -18,11 +18,12 @@ export default class Pillow {
     this.params = {
       width: 10,
       height: 10,
-      factor: 2,
+      factor: 2.2,
     };
     this.debug = params.debug;
     this.scene = params.scene;
     this.mouse = params.mouse;
+    this.time = params.time;
 
     this.init();
     this.addSequins();
@@ -53,6 +54,7 @@ export default class Pillow {
       color: "black",
       front: true,
       mouse: this.mouse,
+      time: this.time,
     });
     this.container.add(this.front.container);
     this.back = new Sequins({
@@ -61,6 +63,7 @@ export default class Pillow {
       color: "white",
       front: false,
       mouse: this.mouse,
+      time: this.time,
     });
     this.container.add(this.back.container);
   }

@@ -18,6 +18,7 @@ export default class World {
       debug: this.debug,
       scene: this.scene,
       mouse: this.mouse,
+      time: this.time,
     });
     this.container.add(this.pillow.container);
   }
