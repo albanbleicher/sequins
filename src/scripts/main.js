@@ -1,5 +1,5 @@
 import "../app.scss";
-import App from "./app";
+import App from "./App";
 if (module.hot) {
   module.hot.accept(function () {
     location.reload();
