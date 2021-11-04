@@ -5,6 +5,7 @@ import Time from "./Tools/Time";
 import World from "./World";
 import { Pane } from "tweakpane";
 import Loader from "./Tools/Loader";
+import Mouse from "./Mouse";
 export default class App {
   constructor(canvas, debug) {
     this.canvas = canvas;
@@ -30,18 +31,22 @@ export default class App {
 
   async init() {
     await this.assets.load();
-    console.log(this.assets.textures);
     this.scene.environment = this.assets.textures.env_;
+    this.mouse = new Mouse({
+      camera: this.camera,
+      scene: this.scene,
+      debug: this.debug,
+    });
+
     this.world = new World({
       camera: this.camera,
       renderer: this.renderer,
       time: this.time,
       debug: this.debug,
       scene: this.scene,
-      envMap: this.envMap,
+      mouse: this.mouse,
     });
     this.scene.add(this.world.container);
-
     window.addEventListener("resize", () => {
       this.renderer.resize();
       this.camera.resize();
