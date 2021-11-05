@@ -11,6 +11,7 @@ export default class World {
     this.container.name = "World";
     this.scene = params.scene;
     this.mouse = params.mouse;
+    this.custom = params.custom;
     this.init();
   }
   init() {
@@ -19,7 +20,10 @@ export default class World {
       scene: this.scene,
       mouse: this.mouse,
       time: this.time,
+      custom: this.custom,
     });
     this.container.add(this.pillow.container);
+    this.pillow.container.position.x += 1;
+    this.pillow.container.position.y += 1;
   }
 }

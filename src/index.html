@@ -11,7 +11,19 @@
 </head>
 
 <body>
-    <canvas></canvas>
+    <div class="begin">
+        <div class="actions">
+            <button id='start-w-image'>Import image</button>
+            <input accept=".png,.jpg,.jpeg" type="file">
+            or
+            <button id="direct-start">Start without image →</button>
+        </div>
+    </div>
+    <div class='loading hidden'>
+        <h1>Loading...</h1>
+    </div>
+    <canvas class="world"></canvas>
+    <canvas width="500" height="500" class="custom"></canvas>
 </body>
 <script type='module' src='../src/scripts/main.js'></script>
 

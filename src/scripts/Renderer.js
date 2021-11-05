@@ -14,6 +14,7 @@ export default class Renderer {
       precision: "highp",
       powerPreference: "high-performance",
       antialias: true,
+      alpha: true,
     });
     this.renderer.setPixelRatio(window.devicePixelRatio);
     this.renderer.setSize(window.innerWidth, window.innerHeight);

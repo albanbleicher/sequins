@@ -26,6 +26,8 @@ export default class Mouse extends EventDispatcher {
       vec.sub(this.camera.camera.position).normalize();
       let distance = -this.camera.camera.position.z / vec.z;
       pos.copy(this.camera.camera.position).add(vec.multiplyScalar(distance));
+      pos.x -= 1;
+      pos.y -= 1;
       this.delta = this.oldX - e.clientX;
       let dir = 0;
       if (this.delta > 0.5 || this.delta < -0.5) {

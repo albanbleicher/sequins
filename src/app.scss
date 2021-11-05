@@ -1,12 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@100;200;300;400;500&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 html,
 body {
-    background-color: white;
+    background-color: black;
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Epilogue', sans-serif;
 }
 
 canvas {
+    &.world {
+        width: 100%;
+        height: 100%;
+    }
+
+    &.custom {
+        opacity: 0;
+    }
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.begin,
+.loading {
+    input {
+        display: none;
+    }
+
+    &.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    color: white;
+    transition: opacity 0.5s;
+
+    h1 {
+        font-size: 8vw;
+        font-weight: 100;
+    }
+
+    button {
+        padding: 15px 20px;
+        font-family: 'Epilogue';
+        background-color: transparent;
+        border: 1px solid white;
+        color: white;
+        display: inline;
+        margin: 0 10px;
+        cursor: pointer;
+
+        &:first-child {
+            position: relative;
+
+            &::after {
+                width: 100%;
+                height: 0%;
+                background-color: white;
+                bottom: 0;
+                left: 0;
+                content: '';
+                position: absolute;
+                transition: height 0.4s ease-out;
+                mix-blend-mode: difference;
+            }
+
+
+            &:hover {
+
+                &::after {
+                    height: 100%;
+                }
+            }
+        }
+
+        &:last-child {
+            position: relative;
+
+            &::after {
+                position: absolute;
+                bottom: -9px;
+                width: 0%;
+                height: 1px;
+                background-color: white;
+                content: '';
+                left: 0;
+                transition: width ease-out 0.4s;
+            }
+
+            &:hover {
+                &::after {
+                    width: 100%;
+                }
+            }
+
+            padding: 0;
+            border: 0
+        }
+    }
+
 }
