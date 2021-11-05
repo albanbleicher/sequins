@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div class="begin">
+    <div class="begin ">
         <div class="actions">
             <button id='start-w-image'>Pick colors from image</button>
             <input accept=".png,.jpg,.jpeg" type="file">
@@ -22,9 +22,18 @@
     <div class='loading hidden'>
         <h1>Loading...</h1>
     </div>
+    <div class="grid-wrapper hidden">
+        <h1>Sequins from all over the world</h1>
+        <span>(the world meaning : this classroom)</span>
+        <div class="grid">
+        </div>
+    </div>
     <canvas class="world"></canvas>
     <canvas width="500" height="500" class="custom"></canvas>
+    <script type='text/javascript' src="../src/lib/gif.js"></script>
+
 </body>
+
 <script type='module' src='../src/scripts/main.js'></script>
 
 </html>

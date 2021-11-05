@@ -2,7 +2,7 @@
   "name": "my-project",
   "source": "src/index.html",
   "scripts": {
-    "dev": "parcel src/index.html --open",
+    "dev": "parcel src/index.html src/lib/**/* --open",
     "build": "parcel build",
     "clean": "rm -rf dist && rm -rf .parcel-cache"
   },
@@ -14,8 +14,13 @@
     "@parcel/resolver-glob": "^2.0.0",
     "@parcel/transformer-raw": "^2.0.0",
     "@parcel/transformer-sass": "^2.0.0",
+    "ccapture.js": "^1.1.0",
+    "firebase": "^9.3.0",
+    "firebase-app": "^0.0.1",
+    "gif-capture-canvas": "^1.1.0",
     "gsap": "^3.8.0",
     "three": "^0.134.0",
-    "tweakpane": "^3.0.5"
+    "tweakpane": "^3.0.5",
+    "uuid": "^8.3.2"
   }
 }

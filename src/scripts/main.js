@@ -5,6 +5,7 @@ if (module.hot) {
     location.reload();
   });
 }
+console.log(window);
 document.addEventListener("DOMContentLoaded", (e) => {
   const canvas = document.querySelector(".world");
   const custom = document.querySelector(".custom");
