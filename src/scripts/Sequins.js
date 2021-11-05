@@ -33,7 +33,7 @@ export default class Sequins {
     const material = new MeshStandardMaterial({
       color: new Color(this.color),
       envMapIntensity: 2,
-      roughness: this.custom ? 0.05 : 0.3,
+      roughness: 0.2,
       metalness: 1,
       transparent: true,
       opacity: 0,
