@@ -5,7 +5,6 @@ if (module.hot) {
     location.reload();
   });
 }
-console.log(window);
 document.addEventListener("DOMContentLoaded", (e) => {
   const canvas = document.querySelector(".world");
   const custom = document.querySelector(".custom");
@@ -14,12 +13,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
   const directStart = document.getElementById("direct-start");
   const startWImage = document.getElementById("start-w-image");
   const file = document.querySelector("input");
-  console.log(file);
   startWImage.addEventListener("click", () => {
     file.click();
   });
   file.addEventListener("change", (e) => {
-    console.log(e.target.files[0]);
     const url = URL.createObjectURL(e.target.files[0]);
     document.querySelector(".begin").classList.add("hidden");
     const ctx = custom.getContext("2d");

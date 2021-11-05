@@ -34,7 +34,6 @@ export default class Loader {
       const tex = Object.entries(item[1])[0];
       const format = tex[0];
       const url = tex[1];
-      console.log(format, url);
       switch (format) {
         case "png":
         case "jpg":
@@ -52,7 +51,6 @@ export default class Loader {
             this.hdriLoader.load(url, (data) => {
               data.mapping = EquirectangularReflectionMapping;
               this.textures[item[0]] = data;
-              console.log(data);
               resolve();
             });
           });
@@ -60,10 +58,5 @@ export default class Loader {
           break;
       }
     });
-    //   console.log(
-    //     textures.forEach((item) => {
-    //       console.log(item);
-    //     })
-    //   );
   }
 }

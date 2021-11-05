@@ -153,11 +153,9 @@ export default class App {
         grid.append(wrapper);
 
         wrapper.addEventListener("mouseenter", () => {
-          console.log("elementtt enter");
           element.play();
         });
         wrapper.addEventListener("mouseleave", () => {
-          console.log("element leave");
           element.pause();
         });
         wrapper.addEventListener("click", () => {
